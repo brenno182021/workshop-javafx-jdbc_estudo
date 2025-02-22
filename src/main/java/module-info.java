@@ -14,5 +14,6 @@ module application.workshopjavafxjdbc {
 
     opens application.workshopjavafxjdbc to javafx.fxml;
     opens application.workshopjavafxjdbc.gui to javafx.fxml;
+    opens application.workshopjavafxjdbc.model.entities to javafx.base;
     exports application.workshopjavafxjdbc;
 }
