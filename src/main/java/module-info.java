@@ -10,6 +10,7 @@ module application.workshopjavafxjdbc {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires mysql.connector.j;
 
     opens application.workshopjavafxjdbc to javafx.fxml;
     opens application.workshopjavafxjdbc.gui to javafx.fxml;
