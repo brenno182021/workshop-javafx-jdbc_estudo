@@ -12,5 +12,6 @@ module application.workshopjavafxjdbc {
     requires com.almasb.fxgl.all;
 
     opens application.workshopjavafxjdbc to javafx.fxml;
+    opens application.workshopjavafxjdbc.gui to javafx.fxml;
     exports application.workshopjavafxjdbc;
 }
