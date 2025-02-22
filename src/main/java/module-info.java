@@ -11,6 +11,7 @@ module application.workshopjavafxjdbc {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires mysql.connector.j;
+    requires java.sql;
 
     opens application.workshopjavafxjdbc to javafx.fxml;
     opens application.workshopjavafxjdbc.gui to javafx.fxml;
