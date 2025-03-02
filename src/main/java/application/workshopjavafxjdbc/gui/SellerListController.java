@@ -6,6 +6,7 @@ import application.workshopjavafxjdbc.gui.listeners.DataChangeListener;
 import application.workshopjavafxjdbc.gui.util.Alerts;
 import application.workshopjavafxjdbc.gui.util.Utils;
 import application.workshopjavafxjdbc.model.entities.Seller;
+import application.workshopjavafxjdbc.model.services.DepartmentService;
 import application.workshopjavafxjdbc.model.services.SellerService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -112,7 +113,8 @@ public class SellerListController implements Initializable, DataChangeListener {
 
             SellerFormController controller = fxmlLoader.getController();
             controller.setSeller(Seller);
-            controller.setSellerService(new SellerService());
+            controller.setServices(new SellerService(), new DepartmentService());
+            controller.loadAssociatedObjects();
             controller.subscribeDataChangeListener(this);
             controller.updateFormData();
 
@@ -125,6 +127,7 @@ public class SellerListController implements Initializable, DataChangeListener {
             dialogStage.showAndWait();
 
         }catch (IOException e) {
+            e.printStackTrace();
             Alerts.showAlert("IO Exception", "Error loading view", e.getCause().getMessage(), Alert.AlertType.ERROR);
         }
     }
