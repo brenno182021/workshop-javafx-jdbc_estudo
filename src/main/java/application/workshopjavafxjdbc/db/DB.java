@@ -1,12 +1,16 @@
 package application.workshopjavafxjdbc.db;
 
+import application.workshopjavafxjdbc.Main;
+
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Objects;
 import java.util.Properties;
 
 public class DB {
@@ -36,18 +40,21 @@ public class DB {
 			}
 		}
 	}
-	
+
 	private static Properties loadProperties() {
-		try (FileInputStream fs = new FileInputStream("src/main/java/application/workshopjavafxjdbc/db.properties")) {
+		try (InputStream inputStream = Main.class.getResourceAsStream("/application/workshopjavafxjdbc/db/db.properties")) {
+			if (inputStream == null) {
+				throw new DbException("Arquivo de configuração db.properties não encontrado.");
+			}
 			Properties props = new Properties();
-			props.load(fs);
+			props.load(inputStream);
 			return props;
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			throw new DbException(e.getMessage());
 		}
 	}
-	
+
+
 	public static void closeStatement(Statement st) {
 		if (st != null) {
 			try {
